@@ -1,35 +1,56 @@
-# Pizza example using decorators
 
-class PizzaComponent: # Componente
+class PizzaComponent:
     def getDescription(self):
         return self.__class__.__name__
+
     def getTotalCost(self):
         return self.__class__.cost
 
-class Plate(PizzaComponent):
-    cost = 0.0
+class Massa(PizzaComponent):
+    cost = 10.0
 
 class Decorator(PizzaComponent):
     def __init__(self, pizza_component):
         self.component = pizza_component
 
     def getTotalCost(self):
-        return self.component.getTotalCost() + PizzaComponent.getTotalCost(self)
+        return self.component.getTotalCost() + super().getTotalCost()
 
     def getDescription(self):
-        return self.component.getDescription() + ' ' + PizzaComponent.getDescription(self)
+        return self.component.getDescription() + ' ' + super().getDescription()
 
-class Frango(Decorator):  #Decorator Concreto A
+class Frango(Decorator): #1
     cost = 4.5
     def __init__(self, pizza_component):
-        Decorator.__init__(self, pizza_component)
+        super().__init__(pizza_component)
 
-class Catupiry(Decorator):  #Decorator Concreto A
+class Catupiry(Decorator):
     cost = 5.5
     def __init__(self, pizza_component):
-        Decorator.__init__(self, pizza_component)
+        super().__init__(pizza_component)
 
+class Calabresa(Decorator):
+    cost = 4.5
+    def __init__(self, pizza_component):
+        super().__init__(pizza_component)
 
+class CarneDeSol(Decorator):
+    cost = 7.5
+    def __init__(self, pizza_component):
+        super().__init__(pizza_component)
 
-pizzaDeFrango = Frango(Catupiry(Plate))
-print(pizzaDeFrango.getDescription() + "$" + str(pizzaDeFrango.getTotalCost()))
+class Lombo(Decorator):
+    cost = 8.4
+    def __init__(self, pizza_component):
+        super().__init__(pizza_component)
+
+class Mussarela(Decorator):
+    cost = 4.5
+    def __init__(self, pizza_component):
+        super().__init__(pizza_component)
+
+pizzaDeFrangoCatupiry = Frango(Catupiry(Massa()))
+print(pizzaDeFrangoCatupiry.getDescription() + " $" + str(pizzaDeFrangoCatupiry.getTotalCost()))
+pizzaDeLomboMussarela = Mussarela(Lombo(Massa()))
+print(pizzaDeLomboMussarela.getDescription() + " $" + str(pizzaDeLomboMussarela.getTotalCost()))
+

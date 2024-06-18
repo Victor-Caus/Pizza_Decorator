@@ -1,0 +1,53 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class node7 as "PizzaDecorator.Calabresa" {
+   cost: 
+   __init__(self, pizza_component): 
+}
+class node4 as "PizzaDecorator.CarneDeSol" {
+   cost: 
+   __init__(self, pizza_component): 
+}
+class node1 as "PizzaDecorator.Catupiry" {
+   cost: 
+   __init__(self, pizza_component): 
+}
+class node6 as "PizzaDecorator.Decorator" {
+   component: 
+   __init__(self, pizza_component): 
+   getTotalCost(self): 
+   getDescription(self): 
+}
+class node3 as "PizzaDecorator.Frango" {
+   cost: 
+   __init__(self, pizza_component): 
+}
+class node2 as "PizzaDecorator.Lombo" {
+   cost: 
+   __init__(self, pizza_component): 
+}
+class node0 as "PizzaDecorator.Massa" {
+   cost: 
+}
+class node5 as "PizzaDecorator.Mussarela" {
+   cost: 
+   __init__(self, pizza_component): 
+}
+class node8 as "PizzaDecorator.PizzaComponent" {
+   getDescription(self): 
+   getTotalCost(self): 
+}
+
+node7  ^-[#595959,plain]-  node6 
+node4  ^-[#595959,plain]-  node6 
+node1  ^-[#595959,plain]-  node6 
+node6  ^-[#595959,plain]-  node8 
+node3  ^-[#595959,plain]-  node6 
+node2  ^-[#595959,plain]-  node6 
+node0  ^-[#595959,plain]-  node8 
+node5  ^-[#595959,plain]-  node6 
+@enduml
